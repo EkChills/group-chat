@@ -1,6 +1,14 @@
 import axios from "axios"
-import { MessageSchema, MessageType } from "./types/zod"
+import { ChatRoomSchema, ChatRoomType, MessageSchema, MessageType } from "./types/zod"
 import { isToday, parseISO, isYesterday, format } from "date-fns"
+
+export async function getRoom(roomId:string):Promise<ChatRoomType> {
+  const res = await axios(`${baseUrl}/api/rooms/${roomId}`)
+  const data = await res.data
+  ChatRoomSchema.parse(data)
+  return data
+}
+
 
 export async function getMessages(roomId:string):Promise<MessageType> {
   const res = await axios(`${baseUrl}/api/messages/${roomId}`)

@@ -1,6 +1,5 @@
 "use client"
 
-import { getRoom } from '@/app/channel/[roomid]/layout'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { ChevronDown, ChevronLeft } from 'lucide-react'
 import React from 'react'
@@ -10,7 +9,7 @@ import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { authOptions } from '@/lib/authOptions'
 import Image from 'next/image'
-import { baseUrl } from '@/lib/fetchReactQ'
+import { baseUrl, getRoom } from '@/lib/fetchReactQ'
 
 export async function getMembers(roomId:string):Promise<MembersType> {
   const res = await axios(`${baseUrl}/api/members/${roomId}`)
