@@ -1,6 +1,5 @@
 "use client"
 
-import { getRoom } from '@/app/channel/[roomid]/page'
 import { useQuery } from '@tanstack/react-query'
 import React, { useContext, useEffect, useState } from 'react'
 import { RoomContext } from './providers/Context'
