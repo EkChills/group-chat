@@ -9,9 +9,10 @@ import { Hydrate, dehydrate } from "@tanstack/react-query";
 import Chatroom from "@/components/Chatroom";
 import Sidebar from "@/components/Sidebar";
 import BigSidebar from "@/components/BigSidebar";
+import { baseUrl } from "@/lib/fetchReactQ";
 
 export async function getRoom(roomId:string):Promise<ChatRoomType> {
-  const res = await axios(`http://localhost:3000/api/rooms/${roomId}`)
+  const res = await axios(`${baseUrl}/api/rooms/${roomId}`)
   const data = await res.data
   ChatRoomSchema.parse(data)
   return data

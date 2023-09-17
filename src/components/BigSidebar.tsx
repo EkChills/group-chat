@@ -10,9 +10,10 @@ import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { authOptions } from '@/lib/authOptions'
 import Image from 'next/image'
+import { baseUrl } from '@/lib/fetchReactQ'
 
 export async function getMembers(roomId:string):Promise<MembersType> {
-  const res = await axios(`http://localhost:3000/api/members/${roomId}`)
+  const res = await axios(`${baseUrl}/api/members/${roomId}`)
   const data = await res.data
   MembersSchema.parse(data)
   return data

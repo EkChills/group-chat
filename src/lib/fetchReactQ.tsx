@@ -3,7 +3,7 @@ import { MessageSchema, MessageType } from "./types/zod"
 import { isToday, parseISO, isYesterday, format } from "date-fns"
 
 export async function getMessages(roomId:string):Promise<MessageType> {
-  const res = await axios(`http://localhost:3000/api/messages/${roomId}`)
+  const res = await axios(`${baseUrl}/api/messages/${roomId}`)
   const data = await res.data
   MessageSchema.parse(data)
   return data
@@ -19,3 +19,5 @@ export function parseDate (date:string):string {
     return format(parsed, 'eeee at h:mm a') 
   }
 }
+
+export const baseUrl = process.env.NODE_ENV === 'production' ? 'https://group-chat-woad.vercel.app' : 'http://localhost:3000'
