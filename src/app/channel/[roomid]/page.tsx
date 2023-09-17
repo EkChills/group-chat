@@ -11,12 +11,6 @@ import Sidebar from "@/components/Sidebar";
 import BigSidebar from "@/components/BigSidebar";
 import { baseUrl } from "@/lib/fetchReactQ";
 
-export async function getRoom(roomId:string):Promise<ChatRoomType> {
-  const res = await axios(`${baseUrl}/api/rooms/${roomId}`)
-  const data = await res.data
-  ChatRoomSchema.parse(data)
-  return data
-}
 
 export default async function SingleRoom({ params }: { params: { roomid: string } }) {
   // const [incomingMessages, setIncomingMessages] = useState<{email:string, text:string}[]>([]);
