@@ -3,11 +3,11 @@
 import React, { useContext, useEffect } from 'react'
 import {AlignJustify} from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
-import { getRoom } from '@/app/channel/[roomid]/page'
 import { RoomContext } from './providers/Context'
 import ReactDOM, {createPortal} from 'react-dom'
 import Sidebar from './Sidebar'
 import { cn } from '@/lib/utils'
+import { getRoom } from '@/lib/fetchReactQ'
 
 
 
