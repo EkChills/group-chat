@@ -53,7 +53,7 @@ export default function Chatroom({roomId}:{roomId:string}) {
   }
 
   return (
-    <div className='flex flex-col px-[1rem] lg:px-[3.5rem]  pt-[5rem] w-[100vw] lg:w-[calc(100vw-29rem)] min-h-screen pb-[2.46rem] max-h-screen overflow-y-scroll'>
+    <div className='flex flex-col px-[1rem] lg:px-[3.5rem]  pt-[5rem] w-[100vw] lg:w-[calc(100vw-20.25rem)] min-h-screen pb-[2.46rem] max-h-screen overflow-y-scroll'>
       <div className='flex flex-col space-y-[2.37rem]'>
       {initialMessages?.map((msg) => {
         const date = parseDate(msg.createdAt) 
