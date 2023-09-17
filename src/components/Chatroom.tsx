@@ -23,11 +23,11 @@ export default function Chatroom({roomId}:{roomId:string}) {
   const { data:initialMessages } = useQuery({ queryKey: ['messages'], queryFn: () => getMessages(roomId) })
   console.log(initialMessages, roomId);
   
+  // useEffect(() => {
+  // },[roomId, setRoomId])
+  
   useEffect(() => {
     setRoomId(roomId)
-  },[roomId, setRoomId])
-
-    useEffect(() => {
     pusherClient.subscribe(roomId);
 
     pusherClient.bind("incoming-message", ({name, text, image, sent}:TriggeredMessage) => {
@@ -37,11 +37,11 @@ export default function Chatroom({roomId}:{roomId:string}) {
     return () => {
       pusherClient.unsubscribe(roomId);
     };
-  }, []);
+  }, [roomId, setRoomId]);
 
   console.log(session?.userId);
   
-  async function sendMessage(e:React.FormEvent<HTMLInputElement>) {
+  async function sendMessage(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if(!message) {
       return
