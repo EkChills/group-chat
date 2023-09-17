@@ -1,6 +1,11 @@
+import PusherWrapper from '@/components/PusherWrapper'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import SessProvider from '@/components/providers/SessProvider'
+import ClientProvider from '@/components/react-query/ClientProvider'
+import { cn } from '@/lib/utils'
+import { RoomProvider } from '@/components/providers/Context'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +21,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(inter.className, 'bg-[#252329]')}>
+        <SessProvider>
+        <ClientProvider>
+         <RoomProvider> 
+        {children}
+        </RoomProvider>
+        </ClientProvider>
+        </SessProvider>
+        <div id='sing-lay'></div>
+        </body>
     </html>
   )
 }

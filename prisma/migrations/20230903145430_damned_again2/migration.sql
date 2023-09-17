@@ -1,0 +1,2 @@
+-- AddForeignKey
+ALTER TABLE "ChatRoom" ADD CONSTRAINT "ChatRoom_userid_fkey" FOREIGN KEY ("userid") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

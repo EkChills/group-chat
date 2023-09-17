@@ -1,0 +1,33 @@
+"use client"
+
+import React, { useContext, useEffect } from 'react'
+import {AlignJustify} from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import { getRoom } from '@/app/channel/[roomid]/page'
+import { RoomContext } from './providers/Context'
+import ReactDOM, {createPortal} from 'react-dom'
+import Sidebar from './Sidebar'
+import { cn } from '@/lib/utils'
+
+
+
+export default function Navbar({className}:{className?:string}) {
+  const {roomId, isSidebarOpen, setIsSidebarOpen} = useContext(RoomContext)
+  const {data} = useQuery({queryKey:['room'], queryFn:() => getRoom(roomId)})
+  // useEffect(() => {
+  //   const divBody = document.createElement('div')
+  //   divBody.id = 'sing-lay'
+  //   document.body.appendChild(divBody)
+  // },[])
+
+  
+  return (
+    <>
+    <nav className={cn('flex items-center space-x-5 p-4 fixed top-0 inset-x-0 lg:left-[23.25rem] xl:left-[28.25rem] shadow-lg lg:pl-[2.4rem] w-full')}>
+      <AlignJustify color='white' className='cursor-pointer lg:hidden' onClick={() => setIsSidebarOpen(true)} />
+      <p className='text-[#E0E0E0] font-bold text-[1.125rem] capitalize'>{data?.roomName}</p>
+    </nav>
+    {/* <Sidebar /> */}
+    </>
+  )
+}
