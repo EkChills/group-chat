@@ -49,7 +49,7 @@ const Sidebar = ({}:Props) => {
       </div>
       <div className='mt-[2.72rem]'>
       <h4 className='text-[1.125rem] text-[#E0E0E0] font-bold uppercase'>members</h4>
-      <div className='mt-[1.56rem] flex flex-col space-y-[2rem]'>
+      <div className='mt-[1.56rem] flex flex-col space-y-[2rem] max-h-[20rem] overflow-y-scroll'>
       {queryResults[1].data?.map((member) => (
         <div key={member.id} className='flex items-center space-x-[1.75rem] '>
           {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{member.name?.slice(0,2)}</span> */}
