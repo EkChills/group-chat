@@ -1,7 +1,7 @@
 import PusherWrapper from '@/components/PusherWrapper'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import SessProvider from '@/components/providers/SessProvider'
 import ClientProvider from '@/components/react-query/ClientProvider'
 import { cn } from '@/lib/utils'
