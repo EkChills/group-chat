@@ -31,7 +31,9 @@ export default function Chatroom({roomId}:{roomId:string}) {
     pusherClient.subscribe(roomId);
 
     pusherClient.bind("incoming-message", ({name, text, image, sent}:TriggeredMessage) => {
-      setIncomingMessage((prev) => [...prev!, {id:uuid(), name:name, text, image, sent}]);
+      setIncomingMessage(prev => {
+        return [...prev,  {id:uuid(), name:name, text, image, sent}]
+      });
     });
 
     return () => {
@@ -43,7 +45,7 @@ export default function Chatroom({roomId}:{roomId:string}) {
   
   async function sendMessage(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if(!message) {
+    if(message === '') {
       return
     }
     await axios.post('/api/messages', {
