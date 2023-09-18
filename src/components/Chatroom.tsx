@@ -37,7 +37,7 @@ export default function Chatroom({roomId}:{roomId:string}) {
     return () => {
       pusherClient.unsubscribe(roomId);
     };
-  }, [roomId, setRoomId]);
+  }, []);
 
   console.log(session?.userId);
   
@@ -46,13 +46,11 @@ export default function Chatroom({roomId}:{roomId:string}) {
     if(!message) {
       return
     }
-    const res = await axios.post('/api/messages', {
+    await axios.post('/api/messages', {
       text:message,
       roomId:roomId,
     })
     setMessage('')
-    const data = await res.data
-    console.log(data);
     
   }
 
