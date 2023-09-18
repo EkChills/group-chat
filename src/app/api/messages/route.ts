@@ -18,7 +18,7 @@ export async function POST(req:NextRequest) {
     const {text,roomId}:{text:string, roomId:string} = await req.json()
     const session = await getServerSession(authOptions)
     console.log(text, roomId);
-    pusherServer.trigger(roomId, 'incoming-message', {
+    await pusherServer.trigger(roomId, 'incoming-message', {
       name:session?.user.name,
       text:text,
       image:session?.user.image,
