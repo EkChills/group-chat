@@ -31,28 +31,28 @@ export default function Chatroom({roomId}:{roomId:string}) {
     pusherClient.subscribe(roomId);
 
     pusherClient.bind("incoming-message", ({name, text, image, sent}:TriggeredMessage) => {
-      setIncomingMessage(prev => {
-        return [...prev,  {id:uuid(), name:name, text, image, sent}]
-      });
+      setIncomingMessage((prev) => [...prev!, {id:uuid(), name:name, text, image, sent}]);
     });
 
     return () => {
       pusherClient.unsubscribe(roomId);
     };
-  }, []);
+  }, [roomId, setRoomId]);
 
   console.log(session?.userId);
   
   async function sendMessage(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if(message === '') {
+    if(!message) {
       return
     }
-    await axios.post('/api/messages', {
+    const res = await axios.post('/api/messages', {
       text:message,
       roomId:roomId,
     })
     setMessage('')
+    const data = await res.data
+    console.log(data);
     
   }
 
