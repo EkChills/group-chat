@@ -6,6 +6,7 @@ import SessProvider from '@/components/providers/SessProvider'
 import ClientProvider from '@/components/react-query/ClientProvider'
 import { cn } from '@/lib/utils'
 import { RoomProvider } from '@/components/providers/Context'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         </ClientProvider>
         </SessProvider>
         <div id='sing-lay'></div>
+        <Toaster  />
         </body>
     </html>
   )

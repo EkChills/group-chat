@@ -13,7 +13,7 @@ import { getRoom } from '@/lib/fetchReactQ'
 
 export default function Navbar({className}:{className?:string}) {
   const {roomId, isSidebarOpen, setIsSidebarOpen} = useContext(RoomContext)
-  const {data} = useQuery({queryKey:['room'], queryFn:() => getRoom(roomId)})
+  const {data} = useQuery({queryKey:[`room/${roomId}`], queryFn:() => getRoom(roomId)})
   // useEffect(() => {
   //   const divBody = document.createElement('div')
   //   divBody.id = 'sing-lay'

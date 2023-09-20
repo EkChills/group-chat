@@ -14,7 +14,7 @@ import { baseUrl, getRoom } from '@/lib/fetchReactQ';
 export default async function layout({children,params}:{children:React.ReactNode, params: { roomid: string }}) {
 
   const queryClient = getQueryClient()
-  await queryClient.prefetchQuery(['room'], () => getRoom(params.roomid))
+  await queryClient.prefetchQuery([`room/${params.roomid}`], () => getRoom(params.roomid))
   const dehydratedState = dehydrate(queryClient)
 
 

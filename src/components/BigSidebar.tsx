@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react'
 import { authOptions } from '@/lib/authOptions'
 import Image from 'next/image'
 import { baseUrl, getRoom } from '@/lib/fetchReactQ'
+import Link from 'next/link'
 
 export async function getMembers(roomId:string):Promise<MembersType> {
   const res = await axios(`${baseUrl}/api/members/${roomId}`)
@@ -26,12 +27,12 @@ export default function BigSidebar() {
   const queryResults = useQueries({
     queries:[
       {
-        queryKey:['room'],
+        queryKey:[`room/${roomId}`],
         queryFn:() => getRoom(roomId)
       },
       {
-        queryKey:['members'],
-        queryFn:() =>getMembers(roomId === '' ? 'clm8haww50001ug189wr86kas' : roomId)
+        queryKey:[`members/${roomId}`],
+        queryFn:() =>getMembers(roomId)
       }
     ]
   })
@@ -41,10 +42,10 @@ console.log(queryResults[1]);
   
   return (
     <div className=' w-[20.25rem] hidden lg:flex lg:flex-col bg-[#120F13] min-h-screen p-4 items-start relative'>
-      <div className='flex items-center space-x-4 w-full'>
+      <Link href={`${baseUrl}/channel/${roomId}/allchanels`} className='flex items-center space-x-4 w-full cursor-pointer'>
       <ChevronLeft className='text-[#E0E0E0]' />
       <p className='text-[1.125rem] font-bold text-[#E0E0E0]'>All channels</p>
-      </div>
+      </Link>
       <div className='mt-[2.64rem] flex flex-col space-y-[1.12rem]'>
         <h4 className='text-[1.125rem] text-[#E0E0E0] font-bold uppercase'>{queryResults[0].data?.roomName}</h4>
         <p className="text-[1rem] font-[400] tracking-[-0.03938rem] text-[#E0E0E0]">{queryResults[0].data?.roomDescription}</p>

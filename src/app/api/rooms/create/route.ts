@@ -12,15 +12,13 @@ export async function POST(req:NextRequest) {
   
     const newRoom = await db.chatRoom.create({
       data:{
-        userid:session?.userId as string,
+        userid:'clmn681s40000ugxks8jv722r',
         roomName,
         roomDescription
       }
     })
 
-    return NextResponse.json({
-      roomid:newRoom.id
-    })
+    return NextResponse.json(newRoom)
     
   } catch (error) {
     console.log(error);

@@ -20,11 +20,13 @@ export default function Chatroom({roomId}:{roomId:string}) {
   const [message, setMessage] = useState<string>('')
   const {setRoomId} = useContext(RoomContext)
   const {data:session} = useSession()
-  const { data:initialMessages } = useQuery({ queryKey: ['messages'], queryFn: () => getMessages(roomId) })
+  const { data:initialMessages } = useQuery({ queryKey: [`messages/${roomId}`], queryFn: () => getMessages(roomId) })
   console.log(initialMessages, roomId);
   
   // useEffect(() => {
   // },[roomId, setRoomId])
+  console.log(`the room id currently is ${roomId}`);
+  
   
   useEffect(() => {
     setRoomId(roomId)

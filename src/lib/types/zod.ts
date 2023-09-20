@@ -10,7 +10,7 @@ import {z} from 'zod'
 //   userid String
 
 export const ChatRoomSchema = z.object({
-  id:z.string().cuid(),
+  id:z.string(),
   createdAt:z. string().datetime(),
   updatedAt:z.string().datetime(),
   roomName:z.string(),
@@ -23,7 +23,7 @@ export type ChatRoomType = z.infer<typeof ChatRoomSchema>
 
 
 export const MembersSchema = z.array(z.object({
-  id:z.string().cuid(),
+  id:z.string(),
   name:z.union([ z.string(), z.null()]).optional(),
   email:z.string().optional(),
   emailVerified:z.union([ z.string(), z.null(), z.boolean()]).optional(),
@@ -47,5 +47,8 @@ export const MessageSchema = z.array(z.object({
   senderName:z.string()
 }))
 
+export const AllRoomsSchema = z.array(ChatRoomSchema)
+
+export type AllRoomsType = z.infer<typeof AllRoomsSchema>
 export type MessageType = z.infer<typeof MessageSchema> 
 
