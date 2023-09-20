@@ -26,7 +26,7 @@ export default function BigChannel() {
   const {data:rooms} = useQuery({
     queryKey:['chatRooms'],
     queryFn:() => getAllRooms(),
-    onSuccess:() => queryClient.invalidateQueries({queryKey:[`messages/${roomId}`, '']})
+    onSuccess:() => queryClient.invalidateQueries({queryKey:[`messages/${roomId}`]})
   })
   return (
     <div className="w-[20.25rem] hidden lg:flex lg:flex-col bg-[#120F13] min-h-screen p-4 items-start relative">
