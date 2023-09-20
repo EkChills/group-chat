@@ -20,7 +20,7 @@ export async function getMessages(roomId:string):Promise<MessageType> {
 export async function getAllRooms():Promise<AllRoomsType> {
   const res = await axios(`${baseUrl}/api/rooms`)
   const data = await res.data
-  // AllRoomsSchema.parse(data)
+  AllRoomsSchema.parse(data)
   return data
 }
 
