@@ -18,9 +18,9 @@ import { format, parseISO, isToday, isYesterday } from 'date-fns'
 export default function Chatroom({roomId}:{roomId:string}) {
   const [incomingMessage, setIncomingMessage] = useState<{id:string, name:string, text:string, image:string, sent:string}[]>([])
   const [message, setMessage] = useState<string>('')
-  const {setRoomId} = useContext(RoomContext)
+  const {setRoomId, roomId:chatRoomId} = useContext(RoomContext)
   const {data:session} = useSession()
-  const { data:initialMessages } = useQuery({ queryKey: [`messages/${roomId}`], queryFn: () => getMessages(roomId) })
+  const { data:initialMessages } = useQuery({ queryKey: [`messages/${chatRoomId}`], queryFn: () => getMessages(chatRoomId) })
   console.log(initialMessages, roomId);
   
   // useEffect(() => {
@@ -41,7 +41,6 @@ export default function Chatroom({roomId}:{roomId:string}) {
     };
   }, [roomId, setRoomId]);
 
-  console.log(session?.userId);
   
   async function sendMessage(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
