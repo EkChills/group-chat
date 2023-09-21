@@ -9,7 +9,7 @@ import { User } from '@prisma/client';
 
 export const baseUrl =
 process.env.NODE_ENV === "production"
-  ? "https://group-chat-woad.vercel.app"
+  ? "https://group-chat-co8h.vercel.app"
   : "http://localhost:3000";
 
 export const authOptions:AuthOptions = {
