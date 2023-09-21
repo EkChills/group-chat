@@ -26,11 +26,11 @@ const Sidebar = ({}:Props) => {
   const queryResults = useQueries({
     queries:[
       {
-        queryKey:[`room/${roomId}`],
+        queryKey:[`room`, {roomId}],
         queryFn:() => getRoom(roomId)
       },
       {
-        queryKey:[`members/${roomId}`],
+        queryKey:[`members`, {roomId}],
         queryFn:() =>getMembers(roomId === '' ? 'clm8haww50001ug189wr86kas' : roomId)
       }
     ]

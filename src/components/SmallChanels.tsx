@@ -28,7 +28,8 @@ const SmallChannel = ({}:Props) => {
   const {data:session} = useSession()
   const {data:rooms} = useQuery({
     queryKey:['chatRooms'],
-    queryFn:() => getAllRooms()
+    queryFn:() => getAllRooms(),
+    staleTime:0
   })
   console.log(rooms);
   
