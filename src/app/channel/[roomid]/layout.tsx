@@ -25,10 +25,10 @@ export default async function layout({children,params}:{children:React.ReactNode
       <Hydrate state={dehydratedState}>
         <div>
         <Navbar />
+        <Chatroom roomId={params.roomid} />
 
         </div>
       </Hydrate>
-        <Chatroom roomId={params.roomid} />
     </div>
   )
 }
