@@ -12,7 +12,7 @@ export async function POST(req:NextRequest) {
   
     const newRoom = await db.chatRoom.create({
       data:{
-        userid:'clmn681s40000ugxks8jv722r',
+        userid:'clmv3qpug0002ug1ckoft33hx',
         roomName,
         roomDescription
       }
