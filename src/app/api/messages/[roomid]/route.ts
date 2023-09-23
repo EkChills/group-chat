@@ -40,6 +40,7 @@ export async function POST(req:Request) {
       image:session?.user.image,
       sent:format(new Date(), 'eeee hh:mm a')
     })
+    
 
     const message = await db.message.create({
       data:{
