@@ -5,11 +5,12 @@ import { format } from "date-fns";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req:NextRequest,{params}:{params:{roomId:string}}) {
+export async function GET(req:Request,{params}:{params:{roomId:string}}) {
+  let roomId = await params?.roomId
   try {
     const messages = await db.message.findMany({
       where:{
-        chatRoomId:params.roomId
+        chatRoomId:roomId
       }
     })
 
@@ -27,7 +28,7 @@ export interface  TriggeredMessage  {
   image:string;
   sent:string;
 }
-export async function POST(req:NextRequest) {
+export async function POST(req:Request) {
 
   try {
     const {text,roomId}:{text:string, roomId:string} = await req.json()
