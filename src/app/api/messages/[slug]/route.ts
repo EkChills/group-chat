@@ -5,12 +5,11 @@ import { format } from "date-fns";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req:Request,{params}:{params:{roomId:string}}) {
-  let roomId = await params?.roomId
+export async function GET(req:Request,{params}:{params:{slug:string}}) {
   try {
     const messages = await db.message.findMany({
       where:{
-        chatRoomId:'clmvwzjle0001mi09bnzkd3r1'
+        chatRoomId:params.slug
       }
     })
 
