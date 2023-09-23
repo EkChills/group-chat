@@ -10,10 +10,10 @@ import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import { pusherClient } from './PusherWrapper'
-import { TriggeredMessage } from '@/app/api/messages/route'
 import Message from './Message'
 import { getMessages, parseDate } from '@/lib/fetchReactQ'
 import { format, parseISO, isToday, isYesterday } from 'date-fns'
+import { TriggeredMessage } from '@/app/api/messages/[roomId]/route'
 
 export default function Chatroom({roomId}:{roomId:string}) {
   const [incomingMessage, setIncomingMessage] = useState<{id:string, name:string, text:string, image:string, sent:string}[]>([])
