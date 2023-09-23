@@ -10,7 +10,7 @@ export  default async function Home() {
 const session = await getServerSession(authOptions)
 console.log(session);
 if(session) {
-  redirect(`/channel/clmv3rymz0004ug1c3scn6c6g`)
+  redirect(`/channel/clmvwua1i0009ugvwkrb44tci`)
 }
   
   // async function addChannel() {
