@@ -47,7 +47,7 @@ export default function Chatroom({roomId}:{roomId:string}) {
     if(!message) {
       return
     }
-    const res = await axios.post('/api/messages', {
+    const res = await axios.post(`/api/messages/${roomId}`, {
       text:message,
       roomId:roomId,
     })
