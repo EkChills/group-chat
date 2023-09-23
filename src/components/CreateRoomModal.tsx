@@ -36,7 +36,7 @@ export function CreateRoomModal() {
   const mutation = useMutation({
     mutationKey:['rooms/create'],
     mutationFn:async() => {
-      return axios.post(`${baseUrl}/api/rooms/create`, {
+      return axios.post(`${baseUrl}/api/rooms`, {
         roomName:channelInfo.channelName,
         roomDescription:channelInfo.channelDescription
       })
