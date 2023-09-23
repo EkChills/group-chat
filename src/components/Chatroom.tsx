@@ -13,7 +13,13 @@ import { pusherClient } from './PusherWrapper'
 import Message from './Message'
 import { getMessages, parseDate } from '@/lib/fetchReactQ'
 import { format, parseISO, isToday, isYesterday } from 'date-fns'
-import { TriggeredMessage } from '@/app/api/messages/[roomId]/route'
+
+export interface  TriggeredMessage  {
+  name:string;
+  text:string;
+  image:string;
+  sent:string;
+}
 
 export default function Chatroom({roomId}:{roomId:string}) {
   const [incomingMessage, setIncomingMessage] = useState<{id:string, name:string, text:string, image:string, sent:string}[]>([])
