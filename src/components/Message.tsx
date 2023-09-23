@@ -1,7 +1,7 @@
-import { TriggeredMessage } from "@/app/api/messages/route"
 import { authOptions } from "@/lib/authOptions"
 import { getServerSession } from "next-auth"
 import Image from "next/image"
+import { TriggeredMessage } from "./Chatroom"
 
 
 
