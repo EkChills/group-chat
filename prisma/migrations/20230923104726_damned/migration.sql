@@ -45,6 +45,43 @@ CREATE TABLE "VerificationToken" (
     "expires" TIMESTAMP(3) NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "ChatRoom" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userid" TEXT NOT NULL,
+    "roomDescription" TEXT,
+    "roomName" TEXT,
+
+    CONSTRAINT "ChatRoom_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Member" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "chatroomid" TEXT NOT NULL,
+
+    CONSTRAINT "Member_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Message" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "text" TEXT NOT NULL,
+    "chatRoomId" TEXT NOT NULL,
+    "senderId" TEXT NOT NULL,
+    "senderImage" TEXT NOT NULL,
+    "senderName" TEXT NOT NULL,
+
+    CONSTRAINT "Message_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
@@ -65,3 +102,12 @@ ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ChatRoom" ADD CONSTRAINT "ChatRoom_userid_fkey" FOREIGN KEY ("userid") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Member" ADD CONSTRAINT "Member_chatroomid_fkey" FOREIGN KEY ("chatroomid") REFERENCES "ChatRoom"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Message" ADD CONSTRAINT "Message_chatRoomId_fkey" FOREIGN KEY ("chatRoomId") REFERENCES "ChatRoom"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
