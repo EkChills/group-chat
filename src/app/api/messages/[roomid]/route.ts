@@ -10,7 +10,7 @@ export async function GET(req:Request,{params}:{params:{roomId:string}}) {
   try {
     const messages = await db.message.findMany({
       where:{
-        chatRoomId:roomId
+        chatRoomId:'clmvwzjle0001mi09bnzkd3r1'
       }
     })
 
@@ -40,7 +40,7 @@ export async function POST(req:Request) {
       image:session?.user.image,
       sent:format(new Date(), 'eeee hh:mm a')
     })
-    
+
 
     const message = await db.message.create({
       data:{
