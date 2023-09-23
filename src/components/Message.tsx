@@ -6,6 +6,7 @@ import { TriggeredMessage } from "./Chatroom"
 
 
 const Message = ({image,name,sent,text}:TriggeredMessage) => {
+  
   return (
     <div className="flex space-x-[1.75rem] items-start">
         <Image src={image as string} alt='user avatar' width={42} height={42} />
