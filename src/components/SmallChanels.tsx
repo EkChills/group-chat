@@ -42,7 +42,10 @@ const SmallChannel = ({}:Props) => {
       <CreateRoomModal />
       </div>
       <div className="bg-[#3C393F] rounded-[.5rem] h-[3rem] w-full mt-[2.22rem] px-[1rem] flex items-center space-x-[.69rem]">
-      <Search className="text-white" />
+        <div className="w-[2rem]">
+
+      <Search className="text-white w-[2rem] text-[2rem]" />
+        </div>
       <input type="text" className="outline-none bg-transparent caret-white text-white placeholder:text-[.875rem] placeholder:font-[500] placeholder:text-[#828282]" placeholder="search" />
       </div>
       <div className="flex flex-col space-y-[1.35rem] mt-[2.19rem]">
