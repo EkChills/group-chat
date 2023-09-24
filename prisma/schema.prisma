@@ -72,6 +72,7 @@ model Member {
   updatedAt  DateTime @updatedAt
   chatroomid String
   chatroom   ChatRoom @relation(fields: [chatroomid], references: [id])
+  image String?
 }
 
 model Message {

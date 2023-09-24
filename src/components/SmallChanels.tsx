@@ -16,6 +16,7 @@ import { baseUrl, getAllRooms, getRoom } from '@/lib/fetchReactQ'
 import { getMembers } from "./BigSidebar"
 import Link from "next/link"
 import { CreateRoomModal } from "./CreateRoomModal"
+import { useRouter } from "next/navigation"
 
 
 interface Props {
@@ -26,12 +27,20 @@ const SmallChannel = ({}:Props) => {
   
   const {setIsSidebarOpen, isSidebarOpen} = useGlobalContext()
   const {data:session} = useSession()
+  const router = useRouter()
   const {data:rooms} = useQuery({
     queryKey:['chatRooms'],
     queryFn:() => getAllRooms(),
     staleTime:0
   })
   console.log(rooms);
+
+  const enterRoom = async(roomId:string) => {
+    await axios.post(`/api/members/${roomId}`, {name:session?.user.name, image:session?.user.image, id:session?.userId})
+    router.push(`/channel/${roomId}`)
+    setIsSidebarOpen(false)
+
+  }
   
   return (
     <>
@@ -50,12 +59,12 @@ const SmallChannel = ({}:Props) => {
       </div>
       <div className="flex flex-col space-y-[1.35rem] mt-[2.19rem]">
         {rooms?.map((room, index) => {
-          return <Link href={`/channel/${room.id}`} key={room.id} className="flex items-center space-x-[.75rem]">
+          return <div  key={room.id} onClick={() => enterRoom(room.id)} className="flex items-center space-x-[.75rem] hover:cursor-pointer">
         <span className="w-[2.625rem] bg-[#252329] rounded-[.5rem] flex items-center justify-center text-center h-[2.625rem]">
     <p className="text-[1.125rem] font-semibold text-white uppercase">{room?.roomName?.split(' ')[0][0]}{room?.roomName?.split(' ')[1]&& room?.roomName?.split(' ')[1][0]}</p>
         </span>
           <h5 className="text-[1.125rem] font-bold text-white uppercase">{room.roomName}</h5>
-          </Link>
+          </div>
         })}
       </div>
       <div className='bg-[#0B090C] bottom-0 inset-x-0 px-[1rem] py-[1rem] absolute flex items-center w-full'>
