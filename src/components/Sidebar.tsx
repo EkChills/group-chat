@@ -5,11 +5,12 @@ import { Button } from "./ui/button"
 import { useGlobalContext } from "./providers/Context"
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { ChevronDown, ChevronLeft } from 'lucide-react'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { ChatRoomType, MembersSchema, MembersType } from '@/lib/types/zod'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { authOptions } from '@/lib/authOptions'
+import {RemoveScroll} from 'react-remove-scroll'
 import Image from 'next/image'
 import { baseUrl, getRoom } from '@/lib/fetchReactQ'
 import { getMembers } from "./BigSidebar"
@@ -35,10 +36,14 @@ const Sidebar = ({}:Props) => {
       }
     ]
   })
+
+
+
   const {setIsSidebarOpen, isSidebarOpen} = useGlobalContext()
   return (
     <>
-    {isSidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col">
+    {isSidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col" >
+      <RemoveScroll>
       <div className="absolute  bg-[#120F13] top-0 left-0 bottom-0 right-[4rem] p-4">
       <Link href={`${baseUrl}/channel/${roomId}/allchanels`} className='flex items-center space-x-4 cursor-pointer'>
       <ChevronLeft className='text-[#E0E0E0]' />
@@ -69,6 +74,7 @@ const Sidebar = ({}:Props) => {
         <ChevronDown className='text-[#BDBDBD] ml-auto' />
       </div>
       </div>
+      </RemoveScroll>
       <Button className="top-[1rem] right-[.4rem] z-50 rounded-lg bg-[#120F13] text-white absolute active:border active:border-white" onClick={() => setIsSidebarOpen(false)} > <X /></Button>
 
     </div>}
