@@ -41,17 +41,28 @@ const Sidebar = ({}:Props) => {
 
 
   const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100" },
+    open: { opacity: 1,
+       x: 0,
+       transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+    },
+  },
+    closed: { opacity: 0,
+       x: -100,
+       transition: {
+        when: "afterChildren",
+      }, 
+      },
   }
 
   const {setIsSidebarOpen, isSidebarOpen} = useGlobalContext()
   return (
     <>
     <AnimateProvider>
-    {isSidebarOpen && <motion.div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col"  >
+    {isSidebarOpen && <motion.div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}  >
       <RemoveScroll>
-      <motion.div className="absolute  bg-[#120F13] top-0 left-0 bottom-0 right-[4rem] p-4"  initial={{x:-100, opacity:0}} animate={{x:0, opacity:1}} exit={{opacity:0}}  >
+      <motion.div className="absolute  bg-[#120F13] top-0 left-0 bottom-0 right-[4rem] p-4" variants={variants} initial="closed" animate="open" exit={{opacity:0}}  >
       <Link href={`${baseUrl}/channel/${roomId}/allchanels`} className='flex items-center space-x-4 cursor-pointer'>
       <ChevronLeft className='text-[#E0E0E0]' />
       <p className='text-[1.125rem] font-bold text-[#E0E0E0]'>All channels</p>

@@ -13,6 +13,8 @@ import { pusherClient } from './PusherWrapper'
 import Message from './Message'
 import { getMessages, parseDate } from '@/lib/fetchReactQ'
 import { format, parseISO, isToday, isYesterday } from 'date-fns'
+import { motion } from 'framer-motion'
+import AnimateProvider from './providers/AnimateProvider'
 
 export interface  TriggeredMessage  {
   name:string;
@@ -63,19 +65,48 @@ export default function Chatroom({roomId}:{roomId:string}) {
     
   }
 
+  const variants = {
+    visible: (i:number) => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.3,
+      },
+    }),
+    hidden: { opacity: 0 },
+  }
+  
+
+  // const list = {
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       when: "beforeChildren",
+  //       staggerChildren: 0.3,
+  //     },
+  //   },
+  //   hidden: {
+  //     opacity: 0,
+  //     transition: {
+  //       when: "afterChildren",
+  //     },
+  //   },
+  // }
+  
+
   return (
+    <AnimateProvider>
     <form className='flex flex-col px-[1rem] lg:px-[3.5rem]  pt-[5rem] w-[100vw] lg:w-[calc(100vw-20.25rem)] min-h-screen pb-[6.46rem] max-h-screen overflow-y-scroll' onSubmit={sendMessage} >
-      <div className='flex flex-col space-y-[2.37rem]'>
-      {initialMessages?.map((msg) => {
+      <motion.div className='flex flex-col space-y-[2.37rem]' >
+      {initialMessages?.map((msg,index) => {
         const date = parseDate(msg.createdAt) 
         // const formattedDate = format(date, "eeee hh:mm:ss aaaa")
-        return <Message key={msg.id} image={msg.senderImage} name={msg.senderName} sent={date} text={msg.text}/>
+        return <Message key={msg.id} image={msg.senderImage} msgIndex={index} name={msg.senderName} sent={date} text={msg.text}/>
       })}
       {incomingMessage.map((msg) => {
         return <Message key={msg.id} {...msg} />
       })}
 
-      </div>
+      </motion.div>
       <div className='flex  h-[3.45rem] lg:h-[3.85rem] rounded-[.75rem] bg-[#3C393F] fixed mt-auto space-x-2 bottom-[1rem] lg:bottom-[2.46rem] lg:left-[23.46rem] left-[1rem] right-[1rem] lg:right-[3.46rem] items-center px-[.59rem] '>
         <input type="text" onChange={(e) => setMessage(e.target.value)} value={message} className='bg-transparent outline-none indent-5 w-full caret-white text-white' />
         <Button className='bg-[#2F80ED] flex justify-center items-center'>
@@ -84,5 +115,6 @@ export default function Chatroom({roomId}:{roomId:string}) {
         </Button>
       </div>
     </form>
+    </AnimateProvider>
   )
 }
