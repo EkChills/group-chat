@@ -19,6 +19,7 @@ import { Loader2, Plus } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
 import { toast } from "./ui/use-toast"
+import { motion } from "framer-motion"
 
 export function CreateRoomModal() {
   const [channelInfo, setChannelInfo] = useState<{
@@ -59,9 +60,9 @@ export function CreateRoomModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <button className="flex items-center justify-center w-[2rem]  rounded-[.5rem] bg-[#252329] hover:brightness-125 transition-all duration-300">
+      <motion.button className="flex items-center justify-center w-[2rem]  rounded-[.5rem] bg-[#252329] hover:brightness-125 transition-all duration-300" whileHover={{ scale: 1.1 }}>
       <Plus className=" text-white w-[1.2rem]" />
-      </button>      
+      </motion.button>      
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] border-none" >
         <DialogHeader>
