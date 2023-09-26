@@ -11,7 +11,6 @@ const useOnclickOutside = (refObj:RefObject<any>, closeAction:(e:Event) => void)
      }
      closeAction(event)
    }
-
    document.addEventListener('mousedown', handler)
    document.addEventListener('touchstart', handler)
 
