@@ -111,7 +111,6 @@ export default function Chatroom({roomId}:{roomId:string}) {
         <input type="text" onChange={(e) => setMessage(e.target.value)} value={message} className='bg-transparent outline-none indent-5 w-full caret-white text-white' />
         <Button className='bg-[#2F80ED] flex justify-center items-center'>
         <SendHorizontal className='text-[#FFFFFF]' />
-        
         </Button>
       </div>
     </form>

@@ -18,6 +18,8 @@ import Link from "next/link"
 import { CreateRoomModal } from "./CreateRoomModal"
 import { useRouter } from "next/navigation"
 import { RemoveScroll } from "react-remove-scroll"
+import {motion} from 'framer-motion'
+import UserMenu from "./UserMenu"
 
 
 interface Props {
@@ -42,12 +44,29 @@ const SmallChannel = ({}:Props) => {
     setIsSidebarOpen(false)
 
   }
+
+  const variants = {
+    open: { opacity: 1,
+       x: 0,
+       transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.3,
+    },
+  },
+    closed: { opacity: 0,
+       x: -100,
+       transition: {
+        when: "afterChildren",
+      }, 
+      },
+  }
+
   
   return (
     <>
-    {isSidebarOpen && <div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col">
+    {isSidebarOpen && <motion.div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} >
       <RemoveScroll>
-      <div className="absolute  bg-[#120F13] top-0 left-0 bottom-0 right-[4rem] p-4">
+      <motion.div className="absolute  bg-[#120F13] top-0 left-0 bottom-0 right-[4rem] p-4" variants={variants} initial="closed" animate="open">
       <div className='flex items-center justify-between'>
       <p className='text-[1.125rem] font-bold text-[#E0E0E0]'>All channels</p>
       <CreateRoomModal />
@@ -69,21 +88,13 @@ const SmallChannel = ({}:Props) => {
           </div>
         })}
       </div>
-      <div className='bg-[#0B090C] bottom-0 inset-x-0 px-[1rem] py-[1rem] absolute flex items-center w-full'>
-      <div className='flex items-center space-x-[1.75rem] '>
-          {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{session?.user.name?.slice(0,2)}</span> */}
-          <Image src={session?.user.image as string} alt='user avatar' width={42} height={42} />
-          <p className='text-[1rem] text-[#828282] font-bold'>{session?.user.name}</p>
-        </div>
-        <ChevronDown className='text-[#BDBDBD] ml-auto' />
-      </div>
-
+        <UserMenu /> 
   
-      </div>
+      </motion.div>
       </RemoveScroll>
       <Button className="top-[1rem] right-[.4rem] z-50 rounded-lg bg-[#120F13] text-white absolute active:border active:border-white" onClick={() => setIsSidebarOpen(false)} > <X /></Button>
 
-    </div>}
+    </motion.div>}
     </>
   )
 }

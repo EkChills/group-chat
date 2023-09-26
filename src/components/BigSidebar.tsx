@@ -2,7 +2,7 @@
 
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { ChevronDown, ChevronLeft } from 'lucide-react'
-import React from 'react'
+import React, { useRef } from 'react'
 import { useGlobalContext } from './providers/Context'
 import { ChatRoomType, MembersSchema, MembersType } from '@/lib/types/zod'
 import axios from 'axios'
@@ -11,6 +11,9 @@ import { authOptions } from '@/lib/authOptions'
 import Image from 'next/image'
 import { baseUrl, getRoom } from '@/lib/fetchReactQ'
 import Link from 'next/link'
+import Details from './Details'
+import { useOnclickOutside } from '@/lib/hooks/useOnClickOutside'
+import UserMenu from './UserMenu'
 
 export async function getMembers(roomId:string):Promise<MembersType> {
   const res = await axios(`${baseUrl}/api/members/${roomId}`)
@@ -23,7 +26,9 @@ export async function getMembers(roomId:string):Promise<MembersType> {
 
 export default function BigSidebar() {
   const {data:session} = useSession()
-  const {roomId} = useGlobalContext()
+  const {roomId, isLogoutOpen,setIsLogoutOpen} = useGlobalContext()
+  const logoutRef = useRef<HTMLDivElement | null>(null)
+  useOnclickOutside(logoutRef, () => setIsLogoutOpen(false))
   const queryResults = useQueries({
     queries:[
       {
@@ -62,14 +67,7 @@ console.log(queryResults[1]);
       ))}
       </div>
       </div>
-      <div className='bg-[#0B090C] bottom-0 inset-x-0 px-[1rem] py-[1rem] absolute flex items-center w-full'>
-      <div className='flex items-center space-x-[1.75rem] '>
-          {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{session?.user.name?.slice(0,2)}</span> */}
-          <Image src={session?.user.image as string} alt='user avatar' width={42} height={42} />
-          <p className='text-[1rem] text-[#828282] font-bold'>{session?.user.name}</p>
-        </div>
-        <ChevronDown className='text-[#BDBDBD] ml-auto' />
-      </div>
+      <UserMenu />
     </div>
   )
 }

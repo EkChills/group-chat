@@ -18,6 +18,7 @@ import Link from "next/link"
 import {motion} from 'framer-motion'
 import AnimatePresence from "./providers/AnimateProvider"
 import AnimateProvider from "./providers/AnimateProvider"
+import UserMenu from "./UserMenu"
 
 interface Props {
 
@@ -83,14 +84,7 @@ const Sidebar = ({}:Props) => {
       ))}
       </div>
       </div>
-      <div className='bg-[#0B090C] bottom-0 inset-x-0 px-[1rem] py-[1rem] absolute flex items-center w-full'>
-      <div className='flex items-center space-x-[1.75rem] '>
-          {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{session?.user.name?.slice(0,2)}</span> */}
-          <Image src={session?.user.image as string} alt='user avatar' width={42} height={42} />
-          <p className='text-[1rem] text-[#828282] font-bold'>{session?.user.name}</p>
-        </div>
-        <ChevronDown className='text-[#BDBDBD] ml-auto' />
-      </div>
+      <UserMenu />
       </motion.div>
       </RemoveScroll>
       <Button className="top-[1rem] right-[.4rem] z-50 rounded-lg bg-[#120F13] text-white absolute active:border active:border-white" onClick={() => setIsSidebarOpen(false)} > <X /></Button>
