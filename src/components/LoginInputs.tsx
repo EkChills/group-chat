@@ -106,7 +106,7 @@ const LoginInputs = () => {
         </p>
         <Link
           href={"/register"}
-          className="text-[#633CFF] text-base font-medium"
+          className="text-indigo-400 text-base font-medium"
         >
           Create account
         </Link>

@@ -12,40 +12,47 @@ const RegisterPage = async ({}: Props) => {
 
   return (
     <>
-      <div className="p-[2rem] sm:hidden">
-        <div className="flex flex-col">
-          <h2 className="text-[1.5rem] font-bold text-[#333)] ">
-            Create account
-          </h2>
-          <p className="text-[#737373] mt-[.5rem] text-base font-medium  mb-[2.5rem]">
-            Let&apos;s get you started sharing your links!
-          </p>
-          <RegisterInputs />
-        </div>
-      </div>
-      <div className="hidden sm:flex items-center justify-center bg-[#FAFAFA] min-h-screen w-full">
-        <div className="rounded-lg">
-        <Image
-                src={"/images/logo-devlinks-large.svg"}
-                className="mb-[3.19rem] mx-auto"
-                alt="logo"
-                width={170}
-                height={40}
-              />
-          <div className="p-[2.5rem] min-w-[29.75rem] w-full max-w-[29.75rem] bg-white rounded-xl">
-            <div className="flex flex-col">
-           
-              <h2 className="text-[1.5rem] font-bold text-[#333)] ">
-                Create account
-              </h2>
-              <p className="text-[#737373] mt-[.5rem] text-base font-medium  mb-[2.5rem]">
-                Let&apos;s get you started sharing your links!
-              </p>
-              <RegisterInputs />
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="bg-gray-900 text-white min-h-screen">
+
+<div className="px-6 py-8 sm:hidden">
+
+  <div className="flex flex-col items-center">
+
+    <h2 className="text-2xl font-bold text-indigo-400">Create Account</h2>
+
+    <p className="text-gray-500 text-center text-sm mt-3 font-medium">
+      Let&apos;s get started sharing your links!
+    </p>
+
+    <RegisterInputs />
+
+  </div>
+
+</div>
+
+<div className="hidden sm:flex items-center justify-center">
+
+  <div className="bg-gray-800 shadow-lg rounded-lg px-10 py-12">
+
+    <div className="flex flex-col items-center">
+
+      <h2 className="text-2xl font-bold text-indigo-400">
+        Create Account  
+      </h2>
+
+      <p className="text-gray-500 mt-3 text-center text-sm font-medium">
+        Let&apos;s get started sharing your links!
+      </p>
+
+      <RegisterInputs />
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
     </>
   );
 };

@@ -11,34 +11,50 @@ const LoginPage = async ({}: Props) => {
 
   return (
     <>
-    <div className="p-[2rem] sm:hidden">
+    <div className="bg-gray-900 text-white shadow-lg min-h-screen">
+
+<div className="p-8 sm:hidden">
+
+  <div className="flex flex-col">
+
+    <h2 className="text-xl font-bold text-indigo-400">Login</h2>
+
+    <p className="text-gray-400 mt-2 text-base font-medium mb-10">
+      Add details to login
+    </p>
+
+    <LoginInputs />
+
+  </div>
+
+</div>
+
+<div className="hidden sm:flex items-center justify-center bg-gray-900 min-h-screen w-full">
+
+  <div className="rounded-lg">
+
+
+    <div className="px-10 py-10 bg-gray-800 shadow-md rounded-xl border border-gray-700">
+
       <div className="flex flex-col">
-        <h2 className="text-[1.5rem] font-bold text-[#333)] capitalize">
-          login
-        </h2>
-        <p className="text-[#737373] mt-[.5rem] text-base font-medium  mb-[2.5rem]">
-          Add your details below to get back into the app
+
+        <h2 className="text-xl font-bold text-indigo-400">Login</h2>
+
+        <p className="text-gray-400 mt-2 text-base font-medium mb-10">
+          Add details to login  
         </p>
+
         <LoginInputs />
-      </div>
-    </div>
-    <div className="hidden sm:flex items-center justify-center bg-[#FAFAFA] min-h-screen w-full">
-      <div className="rounded-lg">
-    <Image src={"/images/logo-devlinks-large.svg"} className="mb-[4rem] mx-auto" alt="logo" width={170} height={40}/>
-    <div className="p-[2.5rem] min-w-[29.75rem] w-full max-w-[29.75rem] bg-white rounded-lg">
-      <div className="flex flex-col">
-        <h2 className="text-[1.5rem] font-bold text-[#333)] capitalize">
-          login
-        </h2>
-        <p className="text-[#737373] mt-[.5rem] text-base font-medium  mb-[2.5rem]">
-          Add your details below to get back into the app
-        </p>
-        <LoginInputs />
-      </div>
-    </div>
 
       </div>
+
     </div>
+
+  </div>
+
+</div>
+
+</div>
     </>
   );
 };
