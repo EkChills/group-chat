@@ -12,7 +12,7 @@ import Image from 'next/image'
 import { baseUrl, getRoom } from '@/lib/fetchReactQ'
 import Link from 'next/link'
 import Details from './Details'
-import { useOnclickOutside } from '@/lib/hooks/useOnClickOutside'
+import { useOnClickOutside } from '@/lib/hooks/useOnClickOutside'
 import UserMenu from './UserMenu'
 
 export async function getMembers(roomId:string):Promise<MembersType> {
@@ -27,8 +27,8 @@ export async function getMembers(roomId:string):Promise<MembersType> {
 export default function BigSidebar() {
   const {data:session} = useSession()
   const {roomId, isLogoutOpen,setIsLogoutOpen} = useGlobalContext()
-  const logoutRef = useRef<HTMLDivElement | null>(null)
-  useOnclickOutside(logoutRef, () => setIsLogoutOpen(false))
+  // const logoutRef = useRef<HTMLDivElement | null>(null)
+  // useOnclickOutside(logoutRef, () => setIsLogoutOpen(false))
   const queryResults = useQueries({
     queries:[
       {

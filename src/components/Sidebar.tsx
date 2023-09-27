@@ -5,7 +5,7 @@ import { Button } from "./ui/button"
 import { useGlobalContext } from "./providers/Context"
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { ChevronDown, ChevronLeft } from 'lucide-react'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ChatRoomType, MembersSchema, MembersType } from '@/lib/types/zod'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
@@ -19,6 +19,7 @@ import {motion} from 'framer-motion'
 import AnimatePresence from "./providers/AnimateProvider"
 import AnimateProvider from "./providers/AnimateProvider"
 import UserMenu from "./UserMenu"
+import SmallUserMenu from "./SmallUserMenu"
 
 interface Props {
 
@@ -26,6 +27,7 @@ interface Props {
 
 const Sidebar = ({}:Props) => {
   const {data:session} = useSession()
+  const [isMounted, setIsMounted] = useState<boolean>(false)
   const {roomId} = useGlobalContext()
   const queryResults = useQueries({
     queries:[
@@ -58,6 +60,10 @@ const Sidebar = ({}:Props) => {
   }
 
   const {setIsSidebarOpen, isSidebarOpen} = useGlobalContext()
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
   return (
     <>
     <AnimateProvider>
@@ -84,7 +90,7 @@ const Sidebar = ({}:Props) => {
       ))}
       </div>
       </div>
-      <UserMenu />
+      { isMounted && <SmallUserMenu />}
       </motion.div>
       </RemoveScroll>
       <Button className="top-[1rem] right-[.4rem] z-50 rounded-lg bg-[#120F13] text-white absolute active:border active:border-white" onClick={() => setIsSidebarOpen(false)} > <X /></Button>

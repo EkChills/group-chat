@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation"
 import { RemoveScroll } from "react-remove-scroll"
 import {motion} from 'framer-motion'
 import UserMenu from "./UserMenu"
+import SmallUserMenu from "./SmallUserMenu"
 
 
 interface Props {
@@ -88,7 +89,7 @@ const SmallChannel = ({}:Props) => {
           </div>
         })}
       </div>
-        <UserMenu /> 
+        <SmallUserMenu /> 
   
       </motion.div>
       </RemoveScroll>
