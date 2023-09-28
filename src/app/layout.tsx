@@ -7,6 +7,9 @@ import ClientProvider from '@/components/react-query/ClientProvider'
 import { cn } from '@/lib/utils'
 import { RoomProvider } from '@/components/providers/Context'
 import { Toaster } from '@/components/ui/toaster'
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { OurFileRouter, ourFileRouter } from "@/app/api/uploadthing/core";
+import { extractRouterConfig } from 'uploadthing/server'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +25,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-[#252329]')}>
+      <body className={cn(inter.className, '')}>
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <SessProvider>
         <ClientProvider>
          <RoomProvider> 

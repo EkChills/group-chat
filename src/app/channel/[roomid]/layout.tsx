@@ -7,6 +7,7 @@ import Chatroom from "@/components/Chatroom";
 import axios from 'axios';
 import { ChatRoomSchema, ChatRoomType } from '@/lib/types/zod';
 import { baseUrl, getRoom } from '@/lib/fetchReactQ';
+import FramerTransition from '@/components/providers/FramerTransition';
 
 
 
@@ -20,14 +21,17 @@ export default async function layout({children,params}:{children:React.ReactNode
 
   
   return (
-    <div className='md:flex'>
+    <div className='md:flex bg-[#252329]'>
       {children}
       <Hydrate state={dehydratedState}>
+        <FramerTransition>
         <div>
         <Navbar />
         <Chatroom roomId={params.roomid} />
 
         </div>
+
+        </FramerTransition>
       </Hydrate>
     </div>
   )
