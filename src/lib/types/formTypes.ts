@@ -11,10 +11,11 @@ export const BasicSchemaWithPass = BasicSchema.extend({
 })
 
 export const ProfileSchema = z.object({
-  email:z.string().email().trim().min(3, {message:'characters must be three or more'}).toLowerCase()
+  email:z.string().email().trim().min(3, {message:'characters must be three or more'}).toLowerCase(),
+  username:z.string().nonempty()
 })
 
-export type ProfileEmail = z.infer<typeof ProfileSchema>
+export type Profile = z.infer<typeof ProfileSchema>
 
 export const FormLinkSchema =z.object({
   link:z.string().trim().min(5, {message:'please check the URL'})
