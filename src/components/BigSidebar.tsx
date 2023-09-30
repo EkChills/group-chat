@@ -61,7 +61,7 @@ console.log(queryResults[1]);
       {queryResults[1].data?.map((member) => (
         <div key={member.id} className='flex items-center space-x-[1.75rem]'>
           {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{member.name?.slice(0,2)}</span> */}
-          <Image src={member.image as string} alt='user avatar' width={42} height={42} />
+          <Image src={member.image as string} alt='user avatar' width={42} className='rounded-md' height={42} />
           <p className='text-[1rem] text-[#828282] font-bold'>{member.name}</p>
         </div>
       ))}
