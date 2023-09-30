@@ -42,7 +42,7 @@ export default function BigChannel() {
 
 
   return (
-    <div className="w-[20.25rem] hidden lg:flex lg:flex-col bg-[#120F13] min-h-screen p-4 items-start relative ">
+    <div className="w-[20.25rem] hidden lg:flex lg:flex-col bg-[#120F13] min-h-screen p-4 items-start relative overflow-x-hidden">
         <div className='flex items-center justify-between w-full'>
       <p className='text-[1.125rem] font-bold text-[#E0E0E0]'>All channels</p>
     <CreateRoomModal />

@@ -46,7 +46,7 @@ console.log(queryResults[1]);
 
   
   return (
-    <div className=' w-[20.25rem] hidden lg:flex lg:flex-col bg-[#120F13] min-h-screen overflow-y-scroll p-4 items-start relative'>
+    <div className=' w-[20.25rem] hidden overflow-x-hidden lg:flex lg:flex-col bg-[#120F13] min-h-screen overflow-y-scroll p-4 items-start relative'>
       <Link href={`${baseUrl}/channel/${roomId}/allchanels`} className='flex items-center space-x-4 w-full cursor-pointer'>
       <ChevronLeft className='text-[#E0E0E0]' />
       <p className='text-[1.125rem] font-bold text-[#E0E0E0]'>All channels</p>
