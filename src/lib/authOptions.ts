@@ -82,6 +82,6 @@ export const authOptions:AuthOptions = {
   },
   pages:{
     signIn:'/login',
-    newUser:'/register'
+    newUser:'/register',
   },
 }

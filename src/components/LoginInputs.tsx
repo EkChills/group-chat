@@ -63,7 +63,7 @@ const LoginInputs = () => {
   };
 
   async function signGoogle() {
-    signIn("google");
+    signIn("google", { callbackUrl: 'https://group-chat-co8h.vercel.app' });
   }
 
   return (
