@@ -36,7 +36,7 @@ const Details = React.forwardRef<HTMLDivElement,Props >((props, ref) => {
 
   
   return (
-    <motion.div onClick={() => console.log('im clocked')} initial={{opacity:0, scale:0}} animate={{opacity:1, scale:1}} exit={{opacity:0, scale:0}}  ref={ref} className={cn('flex z-[500] flex-col px-[1rem] bg-[#252329] rounded-[.5rem]', props.className)}>
+    <motion.div onClick={() => console.log('im clocked')} initial={{opacity:0, scale:0}} animate={{opacity:1, scale:1}} exit={{opacity:0, scale:0}} ref={ref} className={cn('flex z-[500] flex-col px-[1rem] bg-[#252329] rounded-[.5rem]', props.className)}>
       <Link className='h-[2.45rem] rounded-[.5rem] bg-[#3C393F] flex items-center space-x-[.66rem] px-[.75rem] ' href={'/profile'}>
       <UserCircle2 className='text-white' />
       <p className='text-[.75rem] font-[500] text-[#E0E0E0]'>My Profile</p>

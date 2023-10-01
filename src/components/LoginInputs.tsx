@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { PuffLoader } from "react-spinners";
+import {FcGoogle} from 'react-icons/fc'
 import { cn } from "@/lib/utils";
 
 const LoginInputs = () => {
@@ -30,40 +31,39 @@ const LoginInputs = () => {
     const password = data.password;
     console.log(email, password);
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const callback = await signIn('credentials', {email, password, redirect:false})
-      if(callback?.error) {
+      const callback = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      if (callback?.error) {
         console.log(callback.error);
-        
-       return toast({
-          title:"something went wrong"
-        })
-      }
 
-      if(callback?.ok || !callback?.error) {
-        router.push('/')
         return toast({
-          title:"logged in successfully"
-        })
+          title: "something went wrong",
+        });
       }
-      
 
-        
+      if (callback?.ok || !callback?.error) {
+        router.push("/");
+        return toast({
+          title: "logged in successfully",
+        });
+      }
     } catch (error) {
       toast({
-        title:"something went wrong"
-      })
+        title: "something went wrong",
+      });
       console.log(error);
-      
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
-  async function signGoogle(){
-      signIn('google', { callbackUrl: 'http://localhost:3000/dashboard' })
-      
+  async function signGoogle() {
+    signIn("google");
   }
 
   return (
@@ -95,6 +95,12 @@ const LoginInputs = () => {
         className="w-full h-[2.875rem] bg-[#633CFF] text-center rounded-[.5rem] text-base font-semibold text-white flex items-center justify-center"
       >
         {isLoading ? <PuffLoader color="#ffffff" /> : "Login"}
+      </button>
+      <button type="button" onClick={signGoogle} className="flex items-center justify-center px-4 py-2 space-x-3 border border-gray-300 rounded-md hover:bg-gray-100 group transition-colors duration-500">
+        <FcGoogle />
+        <span className="text-sm font-medium text-[#f5f5f5]  group-hover:text-gray-900">
+          Sign in with Google
+        </span>
       </button>
       {/* <div onClick={signGoogle} className={cn('flex items-center border border-gray-500 rounded-[.5rem] justify-center min-h-[2.875rem] group space-x-3 hover:bg-slate-700 transition-all duration-300 cursor-pointer select-none active:brightness-150')}>
         <FcGoogle className="text-[2rem]" />
