@@ -58,10 +58,10 @@ console.log(queryResults[1]);
       <div className='mt-[2.72rem]'>
       <h4 className='text-[1.125rem] text-[#E0E0E0] font-bold uppercase'>members</h4>
       <div className='mt-[1.56rem] flex flex-col space-y-[2rem] max-h-[21rem] overflow-y-scroll w-[20.25rem]'>
-      {queryResults[1].data?.map((member) => (
+      {queryResults[1].isLoading ?  <Image alt="loader" src={'/images/gear.svg'} width={25} height={25} className="mx-auto mt-10"/> : queryResults[1].data?.map((member) => (
         <div key={member.id} className='flex items-center space-x-[1.75rem]'>
           {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{member.name?.slice(0,2)}</span> */}
-          <Image src={member.image as string} alt='user avatar' width={42} className='rounded-md' height={42} />
+          <Image src={member.image as string} alt='user avatar' width={42} className='rounded-md w-[2.625rem] h-[2.625rem] object-cover' height={42} />
           <p className='text-[1rem] text-[#828282] font-bold'>{member.name}</p>
         </div>
       ))}

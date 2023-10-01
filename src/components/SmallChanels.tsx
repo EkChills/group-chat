@@ -32,7 +32,7 @@ const SmallChannel = ({}:Props) => {
   const {setIsSidebarOpen, isSidebarOpen} = useGlobalContext()
   const {data:session} = useSession()
   const router = useRouter()
-  const {data:rooms} = useQuery({
+  const {data:rooms, isLoading} = useQuery({
     queryKey:['chatRooms'],
     queryFn:() => getAllRooms(),
     staleTime:0
@@ -80,7 +80,7 @@ const SmallChannel = ({}:Props) => {
       <input type="text" className="outline-none bg-transparent caret-white text-white placeholder:text-[.875rem] placeholder:font-[500] placeholder:text-[#828282]" placeholder="search" />
       </div>
       <div className="flex flex-col space-y-[1.35rem] mt-[2.19rem]  max-h-[20rem] overflow-y-scroll">
-        {rooms?.map((room, index) => {
+        {isLoading ?  <Image alt="loader" src={'/images/gear.svg'} width={25} height={25} className="mx-auto mt-10"/> : rooms?.map((room, index) => {
           return <div  key={room.id} onClick={() => enterRoom(room.id)} className="flex items-center space-x-[.75rem] hover:cursor-pointer">
         <span className="w-[2.625rem] bg-[#252329] rounded-[.5rem] flex items-center justify-center text-center h-[2.625rem]">
     <p className="text-[1.125rem] font-semibold text-white uppercase">{room?.roomName?.split(' ')[0][0]}{room?.roomName?.split(' ')[1]&& room?.roomName?.split(' ')[1][0]}</p>

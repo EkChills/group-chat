@@ -94,7 +94,7 @@ const LoginInputs = () => {
         type="submit"
         className="w-full h-[2.875rem] bg-[#633CFF] text-center rounded-[.5rem] text-base font-semibold text-white flex items-center justify-center"
       >
-        {isLoading ? <PuffLoader color="#ffffff" size={20} /> : "Login"}
+        {isLoading ? <PuffLoader color="#ffffff" /> : "Login"}
       </button>
       {/* <div onClick={signGoogle} className={cn('flex items-center border border-gray-500 rounded-[.5rem] justify-center min-h-[2.875rem] group space-x-3 hover:bg-slate-700 transition-all duration-300 cursor-pointer select-none active:brightness-150')}>
         <FcGoogle className="text-[2rem]" />

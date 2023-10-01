@@ -18,7 +18,7 @@ import Link from "next/link"
 import { CreateRoomModal } from "./CreateRoomModal"
 import { useRouter } from "next/navigation"
 import UserMenu from "./UserMenu"
-
+import {FadeLoader} from 'react-spinners'
 
 
 export default function BigChannel() {
@@ -27,7 +27,7 @@ export default function BigChannel() {
   const router = useRouter()
 
   const {data:session} = useSession()
-  const {data:rooms} = useQuery({
+  const {data:rooms, isLoading} = useQuery({
     queryKey:['chatRooms'],
     queryFn:() => getAllRooms(),
     onSuccess:() => queryClient.invalidateQueries({queryKey:[`messages/${roomId}`, `room/${roomId}`]})
@@ -51,9 +51,9 @@ export default function BigChannel() {
       <Search className="text-white" />
       <input type="text" className="outline-none bg-transparent caret-white text-white placeholder:text-[.875rem] placeholder:font-[500] placeholder:text-[#828282]" placeholder="search" />
       </div>
-      <div className="flex flex-col space-y-[1.35rem] mt-[2.19rem] w-full  max-h-[20rem] overflow-y-scroll">
-        {rooms?.map((room, index) => {
-          return <div onClick={() => enterRoom(room.id)} key={room.id}  className="flex items-center space-x-[.75rem] cursor-pointer">
+      <div className="flex flex-col mt-[2.19rem] w-full  max-h-[20rem] overflow-y-scroll overflow-x-hidden">
+        {isLoading ? <Image alt="loader" src={'/images/gear.svg'} width={25} height={25} className="mx-auto mt-10"/> : rooms?.map((room, index) => {
+          return <div onClick={() => enterRoom(room.id)} key={room.id}  className="flex items-center space-x-[.75rem] cursor-pointer hover:bg-[#2c2d31] px-4 transition-all duration-300 rounded py-[.675rem]">
         <span className="w-[2.625rem] bg-[#252329] rounded-[.5rem] flex items-center justify-center text-center h-[2.625rem]">
         <p className="text-[1.125rem] font-semibold text-white uppercase">{room?.roomName?.split(' ')[0][0]}{room?.roomName?.split(' ')[1]&& room?.roomName?.split(' ')[1][0]}</p>
         </span>

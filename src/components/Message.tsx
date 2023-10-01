@@ -27,7 +27,7 @@ const Message = ({image,name,sent,text, msgIndex}:Msg ) => {
   
   return (
     <motion.div className="flex space-x-[1.75rem] items-start" custom={msgIndex} variants={variants} animate="visible" initial="hidden" >
-        <Image src={image as string} alt='user avatar' className="rounded-md" width={42} height={42} />
+        <Image src={image as string} alt='user avatar' className="rounded-md w-[2.625rem] h-[2.625rem] object-cover" width={42} height={42} />
         <div className="flex flex-col space-y-[.5rem]">
           <div className="flex items-center space-x-4">
             <p className="text-[#828282] font-bold text-[1.125rem] capitalize">{name}</p>
