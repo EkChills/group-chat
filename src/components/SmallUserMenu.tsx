@@ -44,7 +44,7 @@ const SmallUserMenu = ({}:Props) => {
     <div className='bg-[#0B090C] bottom-0 inset-x-0 px-[1rem] py-[1rem] absolute flex items-center w-full'>
     <div className='flex items-center space-x-[1.75rem] relative'>
         {/* <span className='w-[2.625rem] h-[2.625rem] rounded-[0.4375rem] font-bold text-white text-3xl bg-[#FF4500] text-center '>{session?.user.name?.slice(0,2)}</span> */}
-        <Image src={session?.user.image as string} alt='user avatar' className="w-[2.625rem] h-[2.625rem] rounded-md" width={42} height={42} />
+        <Image src={session?.user.image as string} alt='user avatar' className="w-[2.625rem] h-[2.625rem] rounded-md object-cover" width={42} height={42} />
         <p className='text-[1rem] text-[#828282] font-bold'>{session?.user.name}</p>
         {smallLogoutOpen && <AnimateProvider>
         <motion.div ref={smallRef} onClick={() => console.log('im clocked')} initial={{opacity:0, scale:0}} animate={{opacity:1, scale:1}} exit={{opacity:0, scale:0}}  className={cn('flex z-[500] flex-col px-[1rem] bg-[#252329] rounded-[.5rem]', 'absolute w-[12rem]  left-[4.6rem] py-[1rem] bottom-8')}>
