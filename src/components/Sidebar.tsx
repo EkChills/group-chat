@@ -37,7 +37,7 @@ const Sidebar = ({}:Props) => {
       },
       {
         queryKey:[`members`, {roomId}],
-        queryFn:() =>getMembers(roomId === '' ? 'clm8haww50001ug189wr86kas' : roomId)
+        queryFn:() =>getMembers(roomId === '' ? 'clmvwua1i0009ugvwkrb44tci' : roomId)
       }
     ]
   })

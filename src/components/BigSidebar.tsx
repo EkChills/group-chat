@@ -18,7 +18,7 @@ import UserMenu from './UserMenu'
 export async function getMembers(roomId:string):Promise<MembersType> {
   const res = await axios(`${baseUrl}/api/members/${roomId}`)
   const data = await res.data
-  MembersSchema.parse(data)
+  // MembersSchema.parse(data)
   return data
 }
 
