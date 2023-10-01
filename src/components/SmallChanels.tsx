@@ -21,6 +21,7 @@ import { RemoveScroll } from "react-remove-scroll"
 import {motion} from 'framer-motion'
 import UserMenu from "./UserMenu"
 import SmallUserMenu from "./SmallUserMenu"
+import AnimateProvider from "./providers/AnimateProvider"
 
 
 interface Props {
@@ -65,6 +66,7 @@ const SmallChannel = ({}:Props) => {
   
   return (
     <>
+    <AnimateProvider>
     {isSidebarOpen && <motion.div className="fixed inset-0 bg-black bg-opacity-25 md:hidden z-[100] flex flex-col" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} >
       <RemoveScroll>
       <motion.div className="absolute  bg-[#120F13] top-0 left-0 bottom-0 right-[4rem] p-4" variants={variants} initial="closed" animate="open">
@@ -96,6 +98,7 @@ const SmallChannel = ({}:Props) => {
       <Button className="top-[1rem] right-[.4rem] z-50 rounded-lg bg-[#120F13] text-white absolute active:border active:border-white" onClick={() => setIsSidebarOpen(false)} > <X /></Button>
 
     </motion.div>}
+    </AnimateProvider>
     </>
   )
 }

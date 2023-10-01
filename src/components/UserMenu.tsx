@@ -10,7 +10,6 @@ import AnimateProvider from "./providers/AnimateProvider"
 import { useOnClickOutside } from "@/lib/hooks/useOnClickOutside"
 
 interface Props {
-
 }
 
 const UserMenu = ({}:Props) => {
