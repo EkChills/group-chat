@@ -80,7 +80,7 @@ export function CreateRoomModal() {
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={handleSubmit} className="bg-[#2F80ED]">{mutation.isLoading ? <Loader2 /> : 'Save Changes' }</Button>
+          <Button onClick={handleSubmit} className="bg-[#2F80ED]">{mutation.isLoading ? <Loader2 className="animate-spin" /> : 'Save Changes' }</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
