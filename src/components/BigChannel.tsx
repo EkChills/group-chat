@@ -51,7 +51,7 @@ export default function BigChannel() {
       <Search className="text-white" />
       <input type="text" className="outline-none bg-transparent caret-white text-white placeholder:text-[.875rem] placeholder:font-[500] placeholder:text-[#828282]" placeholder="search" />
       </div>
-      <div className="flex flex-col mt-[2.19rem] w-full  max-h-[20rem] overflow-y-scroll overflow-x-hidden">
+      <div className="flex flex-col mt-[2.19rem] w-full  max-h-[20rem] overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thumb-gray-900 scrollbar-none scrollbar-track-gray-100">
         {isLoading ? <Image alt="loader" src={'/images/gear.svg'} width={25} height={25} className="mx-auto mt-10"/> : rooms?.map((room, index) => {
           return <div onClick={() => enterRoom(room.id)} key={room.id}  className="flex items-center space-x-[.75rem] cursor-pointer hover:bg-[#2c2d31] px-4 transition-all duration-300 rounded py-[.675rem]">
         <span className="w-[2.625rem] bg-[#252329] rounded-[.5rem] flex items-center justify-center text-center h-[2.625rem]">

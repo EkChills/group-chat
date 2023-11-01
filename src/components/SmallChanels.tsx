@@ -81,7 +81,7 @@ const SmallChannel = ({}:Props) => {
         </div>
       <input type="text" className="outline-none bg-transparent caret-white text-white placeholder:text-[.875rem] placeholder:font-[500] placeholder:text-[#828282]" placeholder="search" />
       </div>
-      <div className="flex flex-col space-y-[1.35rem] mt-[2.19rem]  max-h-[20rem] overflow-y-scroll">
+      <div className="flex flex-col space-y-[1.35rem] mt-[2.19rem]  max-h-[20rem] overflow-y-scroll scrollbar scrollbar-thumb-gray-900 scrollbar-none scrollbar-track-gray-100">
         {isLoading ?  <Image alt="loader" src={'/images/gear.svg'} width={25} height={25} className="mx-auto mt-10"/> : rooms?.map((room, index) => {
           return <div  key={room.id} onClick={() => enterRoom(room.id)} className="flex items-center space-x-[.75rem] hover:cursor-pointer">
         <span className="w-[2.625rem] bg-[#252329] rounded-[.5rem] flex items-center justify-center text-center h-[2.625rem]">
