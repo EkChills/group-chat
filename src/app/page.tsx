@@ -12,6 +12,9 @@ console.log(session);
 if(session) {
   redirect(`/channel/clmvwua1i0009ugvwkrb44tci`)
 }
+if(!session) {
+  redirect(`/login`)
+}
   
   // async function addChannel() {
   //   const res = await axios('/api/rooms/create')
